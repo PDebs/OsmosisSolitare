@@ -2,6 +2,7 @@ package Osmosis;
 
 import heineman.Klondike;
 import ks.common.games.Solitaire;
+import ks.common.model.Card;
 import ks.common.model.Deck;
 import ks.common.model.Pile;
 import ks.common.view.BuildablePileView;
@@ -67,9 +68,12 @@ public class Osmosis extends Solitaire {
 		initializeControllers();
 		
 		// Prepare the Game
+		fillPiles();
+		Card card = deck.get();
+		foundations[0].initializeAsTop(card);
+		foundations[0].add(card);
 		updateScore(0);
-		updateNumberCardsLeft(51);
-		
+		updateNumberCardsLeft(35);
 	}
 
 
@@ -149,6 +153,15 @@ protected void initializeViews() {
 		
 		
 	}
+	
+	private void fillPiles(){
+		for (int i = 0; i < 4; i++){
+			for (int j = 0; j < 4; j++){
+				piles[i].add(deck.get());
+			}
+		}
+	}
+	
 	
 	/** Code to launch solitaire variation. */
 	public static void main (String []args) {

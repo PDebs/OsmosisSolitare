@@ -45,13 +45,12 @@ public class Foundation extends Column {
 	 * @param card the card to played in the first foundation
 	 */
 
-	void initialize(Card card){
-		for (int i = 1; i < 14; i++){
+	void initializeAsTop(Card card){
+		ranksCanAdd = new int[maxPileSize];
+		for (int i = 1; i < maxPileSize+1; i++){
 			int j = i - 1;
 			ranksCanAdd[j] = i;
 		}
-
-		this.cards[0] = card;
 		this.suit = card.getSuit();
 	}
 
