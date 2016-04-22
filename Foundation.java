@@ -40,7 +40,7 @@ public class Foundation extends Column {
 	 * @return returns true if the card can be added, otherwise it returns false
 	 */
 
-	boolean canAddCard(Card card){
+	public boolean canAddCard(Card card){
 			if (suit == card.getSuit()){
 				for (int i = 0; i < maxPileSize; i++){
 					if (card.getRank() == ranksCanAdd[i]){
