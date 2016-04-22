@@ -51,14 +51,18 @@ public class Osmosis extends Solitaire {
 
 	@Override
 	public boolean hasWon() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean answer = false;
+		for (int i = 0; i < 4; i++){
+			if (foundations[i].count() == 13){
+				answer = true;
+			}
+			else answer = false;
+		}
+		return answer;
 	}
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
-		
 		// Initialize everything
 		initializeModel(getSeed());
 		initializeViews();

@@ -17,15 +17,21 @@ public class OsmosisWastePile extends Column {
 	}
 	
 	public void update(){
-		while (this.count() < 3){
+		if (this.count() == 2){
 			if (background.count() > 0){
+				Card temp1, temp2;
+				temp1 = this.get();
+				temp2 = this.get();
+				
 				this.add(background.get());
+				this.add(temp2);
+				this.add(temp1);
 			}
 		}
 	}
 	
 	public void addCard(Card card){
-		if (this.count() > 2){
+		if (this.count() == 3){
 			Card temp1, temp2, temp3;
 			temp1 = this.get();
 			temp2 = this.get();

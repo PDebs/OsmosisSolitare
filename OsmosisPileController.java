@@ -27,6 +27,7 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 	 */
 
 	public void mouseClicked(MouseEvent me){
+		System.out.println("I'm trapped");
 		Foundation[] foundations = this.getFoundations();
 		Pile pile = this.getPile();
 		Card card = pile.get();
