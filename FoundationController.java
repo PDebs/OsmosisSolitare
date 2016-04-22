@@ -1,9 +1,8 @@
 package Osmosis;
 
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class FoundationController implements MouseListener {
+public class FoundationController {
 
 	Osmosis osmosis;
 	FoundationView view;
@@ -16,35 +15,5 @@ public class FoundationController implements MouseListener {
 		this.foundation = view.foundation;
 	}
 	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
