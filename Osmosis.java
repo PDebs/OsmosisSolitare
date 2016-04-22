@@ -143,6 +143,9 @@ protected void initializeViews() {
 		
 	}
 	
+	public Deck getDeck(){
+		return this.deck;
+	}
 
 
 	private void initializeModel(int seed) {
@@ -189,6 +192,19 @@ protected void initializeViews() {
 		// Seed is to ensure we get the same initial cards every time.
 		// Here the seed is to "order by suit."
 		Main.generateWindow(new Osmosis(), Deck.OrderBySuit);
+	}
+
+	public Pile[] getPiles() {
+		return piles;
+	}
+
+	public OsmosisWastePile getOsmosisWastePile() {
+		return wastePile;
+	}
+
+	public Foundation[] getFoundations() {
+		// TODO Auto-generated method stub
+		return foundations;
 	}
 	
 	
