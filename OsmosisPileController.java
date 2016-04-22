@@ -34,6 +34,9 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 		boolean played = false;
 
 		for (int i = 0; i < 4; i++){
+			if (i > 0){
+				foundations[i].updateCanAdd(foundations[i - 1]);
+			}
 			if (addToFoundation(foundations[i], card)){
 				played = true;
 				break;
