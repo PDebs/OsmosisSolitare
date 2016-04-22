@@ -48,8 +48,7 @@ public class Osmosis extends Solitaire {
 	
 	@Override
 	public String getName() {
-		// TODO Make variable with the name as a string
-		return null;
+		return "PDeBrine: Osmosis";
 	}
 
 	@Override
@@ -78,7 +77,7 @@ public class Osmosis extends Solitaire {
 
 
 /**
- * initialize view comment.
+ * initializes the views
  */
 protected void initializeViews() {
 	CardImages ci = getCardImages();
@@ -121,12 +120,17 @@ protected void initializeViews() {
 
 	private void initializeControllers() {
 		// TODO Auto-generated method stub
+		OsmosisDeckController deckController = new OsmosisDeckController(this, deckView);
+		deckView.setMouseAdapter(deckController);
 		
+		for (int i = 0; i < 4; i++){
+			OsmosisPileController pileController = new OsmosisPileController(this, pileViews[i], i);
+			pileViews[i].setMouseAdapter(pileController);
+		}
 	}
 
 	private void initializeModel(int seed) {
-		// TODO Auto-generated method stub
-		
+
 		// Generate the deck
 		this.deck = new Deck("Deck");
 		deck.create(seed);
@@ -136,6 +140,7 @@ protected void initializeViews() {
 		foundations = new Foundation[4];
 		for (int i = 0; i < 4; i++){
 			foundations[i] = new Foundation();
+			foundations[i].setNum(i);
 			model.addElement(foundations[i]);
 		}
 		

@@ -5,9 +5,23 @@ import ks.common.model.Column;
 
 public class Foundation extends Column {
 
-	int[] ranksCanAdd;
+	/** Array of ints representing the suits that can be added to this foundation */
+	int [] ranksCanAdd = new int[maxPileSize];
+	/** the suit of this foundation */
 	int suit;
+	/** determines whether the foundation has been played upon or if its empty */
 	boolean played;
+	/** Faundation knows which one it is */
+	int num;
+	
+	/**
+	 * Sets the num value
+	 * @param num the number of the foundation
+	 */
+	
+	public void setNum(int num){
+		this.num = num;
+	}
 
 	/**
 	 * Updates the array that determines whether a card can be added to this Foundation
@@ -15,8 +29,9 @@ public class Foundation extends Column {
 	 */
 
 	void updateCanAdd(Foundation foundation){
-		for (int i = 0; i < foundation.numCards; i++){
+		for (int i = 0; i < foundation.count(); i++){
 			ranksCanAdd[i] = foundation.cards[i].getRank();
+			System.out.println("ranksCanAdd[i] = "+ ranksCanAdd[i] + "Count =" + foundation.count());
 		}
 	}
 
@@ -27,17 +42,15 @@ public class Foundation extends Column {
 	 */
 
 	boolean canAddCard(Card card){
-		if(played){
 			if (suit == card.getSuit()){
-				for (int i = 0; i < this.numCards; i++){
+				for (int i = 0; i < maxPileSize; i++){
 					if (card.getRank() == ranksCanAdd[i]){
+						System.out.println("success");
 						return true;
 					}
 				}
 			}
-		return false;
-		}
-		else return true;
+			return false;
 	}
 
 	/**
@@ -46,12 +59,34 @@ public class Foundation extends Column {
 	 */
 
 	void initializeAsTop(Card card){
-		ranksCanAdd = new int[maxPileSize];
 		for (int i = 1; i < maxPileSize+1; i++){
 			int j = i - 1;
 			ranksCanAdd[j] = i;
 		}
 		this.suit = card.getSuit();
+		played = true;
+	}
+	
+	void initialize(Card card){
+		this.suit = card.getSuit();
+		played = true;
+	}
+	
+	public boolean notPlayed(Card card, Foundation parent){
+		System.out.println("entered notPLayed");
+		assert (num > 0);
+		this.updateCanAdd(parent);
+		System.out.println(ranksCanAdd.length);
+		for (int i = 0; i < ranksCanAdd.length; i++){
+			System.out.println("can add" + ranksCanAdd[i]);
+			System.out.println("added" + card.getRank());
+			if (card.getRank() == (ranksCanAdd[i])){
+				System.out.println("success");
+				this.initialize(card);
+				return true;
+			}
+		}
+		return false;
 	}
 
 
