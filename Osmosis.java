@@ -1,10 +1,6 @@
 package Osmosis;
 
-import java.util.Stack;
-
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import ks.common.games.Solitaire;
 import ks.common.model.Card;
 import ks.common.model.Deck;
@@ -48,9 +44,7 @@ public class Osmosis extends Solitaire {
 	/** Each game has a waste pile view */
 	protected ColumnView wasteView;
 	
-	/** Each game has a stack of moves */
-	Stack<Undo> undo;
-	
+
 	/** Each game has an undo view */
 	JButton undoView;
 	
@@ -128,10 +122,7 @@ protected void initializeViews() {
 	numLeftView.setFontSize (14);
 	numLeftView.setBounds (20 + ci.getWidth()/4, 10, ci.getWidth(), 20);
 	container.addWidget (numLeftView);
-	
-	undoView = new JButton("Undo");
-	undoView.setBounds(100, 1, 50, 15);
-	container.add(undoView);
+
 	
 
 }
@@ -150,8 +141,6 @@ protected void initializeViews() {
 		OsmosisWastePileController wastePileController = new OsmosisWastePileController(this, wasteView);
 		wasteView.setMouseAdapter(wastePileController);
 		
-		UndoController undoController = new UndoController(this, undoView);
-		undoView.addMouseListener(undoController);
 	}
 	
 

@@ -79,13 +79,6 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 			if (foundation.canAddCard(card)){
 				foundation.add(card);
 				osmosis.getScore().increment(1);
-				Foundation temp = null;
-				for (int i = 0; i < 4; i++){
-					if (card.getSuit() == getFoundations()[i].suit){
-						temp = getFoundations()[i];
-					}
-				}
-				//osmosis.undo.push(new PileCardMove(getPile(), temp, osmosis));
 				return true;
 			}
 			return false;
@@ -93,13 +86,6 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 		else if (foundation.notPlayed(card, osmosis.foundations[foundation.num - 1])){
 			foundation.add(card);
 			osmosis.getScore().increment(1);
-			Foundation temp = null;
-			for (int i = 0; i < 4; i++){
-				if (card.getSuit() == getFoundations()[i].suit){
-					temp = getFoundations()[i];
-				}
-			}
-			//osmosis.undo.push(new PileCardMove(getPile(), temp, osmosis));
 			return true;
 		}
 		return false;
