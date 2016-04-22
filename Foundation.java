@@ -31,7 +31,6 @@ public class Foundation extends Column {
 	void updateCanAdd(Foundation foundation){
 		for (int i = 0; i < foundation.count(); i++){
 			ranksCanAdd[i] = foundation.cards[i].getRank();
-			System.out.println("ranksCanAdd[i] = "+ ranksCanAdd[i] + "Count =" + foundation.count());
 		}
 	}
 
@@ -45,7 +44,6 @@ public class Foundation extends Column {
 			if (suit == card.getSuit()){
 				for (int i = 0; i < maxPileSize; i++){
 					if (card.getRank() == ranksCanAdd[i]){
-						System.out.println("success");
 						return true;
 					}
 				}
@@ -79,15 +77,10 @@ public class Foundation extends Column {
 	 */
 	
 	public boolean notPlayed(Card card, Foundation parent){
-		System.out.println("entered notPLayed");
 		assert (num > 0);
 		this.updateCanAdd(parent);
-		System.out.println(ranksCanAdd.length);
 		for (int i = 0; i < ranksCanAdd.length; i++){
-			System.out.println("can add" + ranksCanAdd[i]);
-			System.out.println("added" + card.getRank());
 			if (card.getRank() == (ranksCanAdd[i])){
-				System.out.println("success");
 				this.initialize(card);
 				return true;
 			}

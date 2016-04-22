@@ -43,7 +43,6 @@ public class OsmosisWastePileController extends java.awt.event.MouseAdapter {
 			pile.addCard(card);
 		}
 		osmosis.wastePile.update();
-		System.out.println("refreshing");
 		osmosis.refreshWidgets();
 
 	}
@@ -77,12 +76,28 @@ public class OsmosisWastePileController extends java.awt.event.MouseAdapter {
 		if (foundation.played){	
 			if (foundation.canAddCard(card)){
 				foundation.add(card);
+				osmosis.getScore().increment(1);
+				Foundation temp = null;
+				for (int i = 0; i < 4; i++){
+					if (card.getSuit() == getFoundations()[i].suit){
+						temp = getFoundations()[i];
+					}
+				}
+				//osmosis.undo.push(new WasteCardMove(getPile(), temp, osmosis));
 				return true;
 			}
 			return false;
 		}
 		else if (foundation.notPlayed(card, osmosis.foundations[foundation.num - 1])){
 			foundation.add(card);
+			osmosis.getScore().increment(1);
+			Foundation temp = null;
+			for (int i = 0; i < 4; i++){
+				if (card.getSuit() == getFoundations()[i].suit){
+					temp = getFoundations()[i];
+				}
+			}
+			//osmosis.undo.push(new WasteCardMove(getPile(), temp, osmosis));
 			return true;
 		}
 		return false;

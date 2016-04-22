@@ -21,7 +21,6 @@ public class OsmosisDeckController extends java.awt.event.MouseAdapter {
      */
 	
 	public void mouseClicked(java.awt.event.MouseEvent me){
-		System.out.println("Clicked");
 		Deck deck = getDeck();
 		OsmosisWastePile wastePile = getWastePile();
 		
@@ -31,9 +30,7 @@ public class OsmosisDeckController extends java.awt.event.MouseAdapter {
 		}
 		else {
 			if (3 < deck.count()){
-				System.out.println("Trying to get" + deck.count());
 				wastePile.addCard(deck.get());
-				System.out.println(deck.count());
 				wastePile.addCard(deck.get());
 				wastePile.addCard(deck.get());
 				osmosis.updateNumberCardsLeft(-3);

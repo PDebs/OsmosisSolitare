@@ -27,7 +27,6 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 	 */
 
 	public void mouseClicked(MouseEvent me){
-		System.out.println("I'm trapped");
 		Foundation[] foundations = this.getFoundations();
 		Pile pile = this.getPile();
 		Card card = pile.get();
@@ -46,7 +45,6 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 		if (!played){
 			pile.add(card);
 		}
-		System.out.println("refreshing");
 		osmosis.refreshWidgets();
 
 	}
@@ -80,12 +78,28 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 		if (foundation.played){	
 			if (foundation.canAddCard(card)){
 				foundation.add(card);
+				osmosis.getScore().increment(1);
+				Foundation temp = null;
+				for (int i = 0; i < 4; i++){
+					if (card.getSuit() == getFoundations()[i].suit){
+						temp = getFoundations()[i];
+					}
+				}
+				//osmosis.undo.push(new PileCardMove(getPile(), temp, osmosis));
 				return true;
 			}
 			return false;
 		}
 		else if (foundation.notPlayed(card, osmosis.foundations[foundation.num - 1])){
 			foundation.add(card);
+			osmosis.getScore().increment(1);
+			Foundation temp = null;
+			for (int i = 0; i < 4; i++){
+				if (card.getSuit() == getFoundations()[i].suit){
+					temp = getFoundations()[i];
+				}
+			}
+			//osmosis.undo.push(new PileCardMove(getPile(), temp, osmosis));
 			return true;
 		}
 		return false;
