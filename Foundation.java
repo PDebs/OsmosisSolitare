@@ -71,6 +71,12 @@ public class Foundation extends Column {
 		this.suit = card.getSuit();
 		played = true;
 	}
+	/**
+	 * Called when a foundation has not been played on but might be able to
+	 * @param card The card to potentially be added
+	 * @param parent The foundation above this foundation, if it is the first foundation, this should never be called
+	 * @return returns true if a foundation is changed, otherwise false
+	 */
 	
 	public boolean notPlayed(Card card, Foundation parent){
 		System.out.println("entered notPLayed");

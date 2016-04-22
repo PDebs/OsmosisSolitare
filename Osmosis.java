@@ -1,11 +1,9 @@
 package Osmosis;
 
-import heineman.Klondike;
 import ks.common.games.Solitaire;
 import ks.common.model.Card;
 import ks.common.model.Deck;
 import ks.common.model.Pile;
-import ks.common.view.BuildablePileView;
 import ks.common.view.CardImages;
 import ks.common.view.ColumnView;
 import ks.common.view.DeckView;
@@ -40,10 +38,10 @@ public class Osmosis extends Solitaire {
 	protected ColumnView[] foundationViews;
 	
 	/** Each game has a waste pile */
-	protected Pile wastePile;
+	protected OsmosisWastePile wastePile;
 	
 	/** Each game has a waste pile view */
-	protected PileView wasteView;
+	protected ColumnView wasteView;
 	
 	
 	@Override
@@ -98,11 +96,11 @@ protected void initializeViews() {
 	foundationViews = new ColumnView[4];
 	for (int i = 0; i < 4; i++){
 		foundationViews[i] = new ColumnView(foundations[i]);
-		foundationViews[i].setBounds(3*ci.getWidth(), 50+ci.getHeight()*(i+1), ci.getWidth(), ci.getHeight());
+		foundationViews[i].setBounds(50+2*ci.getWidth()*(i+1), 50+ci.getHeight(), ci.getWidth(), ci.getHeight());
 		container.addWidget(foundationViews[i]);
 	}
 
-	wasteView = new PileView (wastePile);
+	wasteView = new ColumnView (wastePile);
 	wasteView.setBounds (20*2 + ci.getWidth(), 30, ci.getWidth(), ci.getHeight());
 	container.addWidget (wasteView);
 
@@ -127,6 +125,9 @@ protected void initializeViews() {
 			OsmosisPileController pileController = new OsmosisPileController(this, pileViews[i], i);
 			pileViews[i].setMouseAdapter(pileController);
 		}
+		
+		OsmosisWastePileController wastePileController = new OsmosisWastePileController(this, wasteView);
+		wasteView.setMouseAdapter(wastePileController);
 	}
 
 	private void initializeModel(int seed) {
@@ -153,7 +154,7 @@ protected void initializeViews() {
 		}
 		
 		// Generate waste pile
-		wastePile = new Pile("WastePile");
+		wastePile = new OsmosisWastePile();
 		model.addElement(wastePile);
 		
 		

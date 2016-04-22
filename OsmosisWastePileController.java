@@ -3,23 +3,20 @@ package Osmosis;
 import java.awt.event.MouseEvent;
 
 import ks.common.model.Card;
-import ks.common.model.Pile;
-import ks.common.view.PileView;
+import ks.common.view.ColumnView;
 
-public class OsmosisPileController extends java.awt.event.MouseAdapter {
+public class OsmosisWastePileController extends java.awt.event.MouseAdapter {
 
 	/** The game */
 	Osmosis osmosis;
 	/** the view associated with this controller */
-	PileView view;
-	int num;
+	ColumnView view;
 
-	public OsmosisPileController(Osmosis o, PileView v, int num){
+	public OsmosisWastePileController(Osmosis o, ColumnView v){
 		super();
 
 		this.osmosis = o;
 		this.view = v;
-		this.num = num;
 	}
 
 	/**
@@ -28,7 +25,7 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 
 	public void mouseClicked(MouseEvent me){
 		Foundation[] foundations = this.getFoundations();
-		Pile pile = this.getPile();
+		OsmosisWastePile pile = this.getPile();
 		Card card = pile.get();
 		boolean played = false;
 
@@ -64,8 +61,8 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 	 * @return returns the pile 
 	 */
 
-	private Pile getPile(){
-		return osmosis.piles[num];
+	private OsmosisWastePile getPile(){
+		return osmosis.wastePile;
 	}
 
 	/**
@@ -93,3 +90,4 @@ public class OsmosisPileController extends java.awt.event.MouseAdapter {
 
 
 }
+
