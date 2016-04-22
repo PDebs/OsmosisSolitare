@@ -18,7 +18,9 @@ public class OsmosisWastePile extends Column {
 	
 	public void update(){
 		while (this.count() < 3){
-			this.add(background.get());
+			if (background.count() > 0){
+				this.add(background.get());
+			}
 		}
 	}
 	

@@ -40,8 +40,9 @@ public class OsmosisWastePileController extends java.awt.event.MouseAdapter {
 			
 			}
 		if (!played){
-			pile.add(card);
+			pile.addCard(card);
 		}
+		osmosis.wastePile.update();
 		System.out.println("refreshing");
 		osmosis.refreshWidgets();
 
